@@ -18,7 +18,7 @@ N/A, but will most likely put this on my resume if it turns out well.
 
 ## If planning to collaborate with 1 or 2 classmates for the final project, list their names, email addresses, and the names of their assigned TAs below.
 
-Misael Manzanillo, tut27151@temple.edu, Section 2
+Misael Manzanillo, tut27151@temple.edu, Section 2 Kora Sen, and Elmira Talebianaraki
 
 ## In the world of software, most everything takes longer to implement than you expect. And so it's not uncommon to accomplish less in a fixed amount of time than you hope.
 
