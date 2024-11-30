@@ -27,12 +27,12 @@ async def send_message(message: Message, user_message:str) -> None:
     except Exception as e:
         print(e)
 
-# STEP 3: HANDLING THE STARTUP FOR OUR BOT
+# Start-up for the Bot
 @client.event
 async def on_ready() -> None:
     print(f'{client.user} is now running!')
 
-# STEP 4: HANDLING INCOMING MESSAGES
+# Incoming messages
 @client.event
 async def on_message(message: Message) -> None:
     if message.author == client.user:
@@ -45,7 +45,7 @@ async def on_message(message: Message) -> None:
     print(f'[{channel}] {username}: "{user_message}"')
     await send_message(message, user_message)
 
-# STEP 5: MAIN ENTRY POINT
+# Entery Point
 def main() -> None:
     client.run(token=TOKEN)
 
