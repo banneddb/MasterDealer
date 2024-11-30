@@ -45,7 +45,7 @@ async def on_message(message: Message) -> None:
     print(f'[{channel}] {username}: "{user_message}"')
     await send_message(message, user_message)
 
-# Entery Point
+# Entry Point
 def main() -> None:
     client.run(token=TOKEN)
 
