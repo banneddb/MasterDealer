@@ -1,6 +1,7 @@
 git+https://github.com/Rapptz/discord.py@rewrite
-aiohttp==3.7.4.post0
+aiohttp==3.11.8
 attrs==24.2.0
 canvasapi==3.3.0
 discord==2.3.2
 discord.py==2.4.0
+python-dotenv==1.0.1
