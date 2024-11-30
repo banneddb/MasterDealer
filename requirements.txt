@@ -1,4 +1,4 @@
-git+https://github.com/Rapptz/discord.py
+git+https://github.com/Rapptz/discord.py@rewrite
 aiohttp==3.11.8
 attrs==24.2.0
 canvasapi==3.3.0
