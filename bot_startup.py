@@ -1,4 +1,4 @@
-print("...")
+print("Token in safe and secret place hehehe")
 from typing import Final
 import os
 from dotenv import load_dotenv
