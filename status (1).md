@@ -4,13 +4,14 @@
 
 Behruz Omonullaev
 
+#### Your section leader's name
+
 Bryan Li
 
-TODO
+
+#### Project title
 
 DictionaryDude (changed from CanvasBot)
-
-TODO
 
 ***
 
@@ -18,7 +19,7 @@ Short answers for the below questions suffice. If you want to alter your plan fo
 
 #### What have you done for your project so far?
 
-So far, we have set up the bot to run 24/7 and is currently running active in our server. It is also able to respond to simple user inputs, such as 'hello' and 'goodbye'.
+So far, we have set up the bot to run 24/7 and is currently running active in our server. It is also able to respond to simple user inputs, such as 'hello' and 'goodbye'. We plan on changing some of the elements of our project, such as what it does, into something else because we figured that integrating Canvas API would take too long and we lack the expierence. Instead, we might do a dictionary bot that can help us print the definition of words.
 
 #### What have you not done for your project yet?
 
