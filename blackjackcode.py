@@ -86,8 +86,3 @@ def black_jack(player_choice: str = None):
         messages.append("Game Over. Dealer wins...")
 
     return messages
-
-
-
-if __name__ == "__main__":
-    main()

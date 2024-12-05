@@ -18,11 +18,11 @@ async def send_message(message: Message, user_message:str) -> None:
     if not user_message:
         print("(Message was empty because intents were not enabled)")
         return
-    if is_private := user_message[0] == '?':
+    if user_message[0] == '?':
         user_message = user_message[1:]
     try:
         response: str = black_jack(user_message)
-        await message.author.send(response) if is_private else await message.channel.send(response)
+        await message.author.send(response) if user_message[0] == '?' else await message.channel.send(response)
     except Exception as e:
         print(e)
 
@@ -42,11 +42,17 @@ async def on_message(message: Message) -> None:
     channel: str = str(message.channel)
 
     print(f'[{channel}] {username}: "{user_message}"')
-    await send_message(message, user_message)
+    if user_message.startswith("play blackjack"):
+        game_response = black_jack()
+        await message.channel.send("\n".join(game_response))
+    elif user_message.startswith("1") or user_message.startswith("11"):
+        game_response = black_jack(player_choice=user_message)
+        await message.channel.send("\n".join(game_response))
+    elif user_message in ["hit","stay"]:
+        game_response = black_jack(player_choice=user_message)
+        await message.channel.send("\n".join(game_response))
+    else:
+        await message.channel.send("Send 'play blackjack' to start the game!")
 
-# Entry Point
-def main() -> None:
-    client.run(token=TOKEN)
+client.run(TOKEN)
 
-if __name__ == '__main__':
-    main()
