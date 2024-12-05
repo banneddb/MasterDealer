@@ -2,17 +2,7 @@ from typing import Final
 import os
 from dotenv import load_dotenv
 from discord import Intents, Client, Message
-from bot_response import get_response
-# Import the Canvas class
-from canvasapi import Canvas
-
-# Canvas API URL
-API_URL = "https://example.com"
-# Canvas API key
-API_KEY = "p@$$w0rd"
-
-# Initialize a new Canvas object
-canvas = Canvas(API_URL, API_KEY)
+from blackjackcode import black_jack
 
 # Loading the token into the program
 load_dotenv()

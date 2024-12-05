@@ -7,12 +7,15 @@ card_choices = {"Ace" : [1,11],"Two" : 2,"Three": 3, "Four": 4,"Five" : 5,"Six" 
 def black_jack():
     player_total = 0
     dealer_total = 0
+    messages = []
+
     time.sleep(0.2)
-    print("Dealer hands you the first card...")
+    messages.append("Dealer hands you the first card...")
+
     time.sleep(2)
     card = random.choice(list(card_choices.keys()))
     player_card = card_choices[card]
-    print("Your first card is " + card + " (" + str(player_card) + ").")
+    messages.append("Your first card is " + card + " (" + str(player_card) + ").")
 
     time.sleep(2)
     if isinstance(player_card, list):
@@ -26,11 +29,11 @@ def black_jack():
                 player_total += 11
                 break
             else:
-                print("Invalid input. Please enter the digits 1 or 11 or type 'one' or 'eleven'")
+                messages.append("Invalid input. Please enter the digits 1 or 11 or type 'one' or 'eleven'")
 
     else:
         player_total += player_card
-    print("Your total is " + str(player_total) + ".")
+    messages.append("Your total is " + str(player_total) + ".")
 
     while player_total < 21:
         userinput = input("Would you like to hit or stay? ")
@@ -39,7 +42,7 @@ def black_jack():
             card = random.choice(list(card_choices.keys()))
             player_card = card_choices[card]
             time.sleep(2)
-            print("You drew " + card + " (" + str(player_card) + ").")
+            messages.append("You drew " + card + " (" + str(player_card) + ").")
 
             if isinstance(player_card, list):
                 if player_total + 11 <= 21:
@@ -49,21 +52,21 @@ def black_jack():
             else:
                 player_total += player_card
 
-            print("Your total is now " + str(player_total) + ".")
+            messages.append("Your total is now " + str(player_total) + ".")
             if player_total > 21:
-                print("You went over 21! Game over. Dealer wins.")
+                messages.append("You went over 21! Game over. Dealer wins.")
                 return
         elif "stay" in userinput:
             break
         else:
-            print("Invalid input. Please type 'hit' or 'stay'.")
-    print("Dealer's turn begins...")
+            messages.append("Invalid input. Please type 'hit' or 'stay'.")
+    messages.append("Dealer's turn begins...")
     time.sleep(1)
     while dealer_total < 17:
         card = random.choice(list(card_choices.keys()))
         dealer_card = card_choices[card]
         time.sleep(2)
-        print("Dealer's card is " + card + " (" + str(dealer_card) + ").")
+        messages.append("Dealer's card is " + card + " (" + str(dealer_card) + ").")
         if isinstance(dealer_card, list):
             if dealer_total + 11 <= 21:
                 dealer_total += 11
@@ -72,20 +75,20 @@ def black_jack():
         else:
             dealer_total += dealer_card
         time.sleep(2)
-        print("Dealer's total: " + str(dealer_total))
+        messages.append("Dealer's total: " + str(dealer_total))
         time.sleep(2)
-    print("Your total: " + str(player_total))
-    print("Dealer's total: " + str(dealer_total))
+    messages.append("Your total: " + str(player_total))
+    messages.append("Dealer's total: " + str(dealer_total))
 
 
     if dealer_total > 21 or player_total > dealer_total:
-        print("You win this round!!!")
+        messages.append("You win this round!!!")
     elif player_total == dealer_total:
-        print("It's a tie :0")
+        messages.append("It's a tie :0")
     else:
-        print("Dealer wins...")
+        messages.append("Dealer wins...")
 
-
+    return messages
 def main():
     while True:
         black_jack()
