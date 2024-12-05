@@ -17,7 +17,7 @@ def black_jack():
     time.sleep(2)
     if isinstance(player_card, list):
         while True:
-            user_choice = input("You drew an Ace. Do you want it as 1 or 11? ")
+            user_choice = input("Do you want it as 1 or 11? ")
             user_choice = user_choice.lower()
             if user_choice == "1" or user_choice == "one":
                 player_total += 1
@@ -62,6 +62,7 @@ def black_jack():
     while dealer_total < 17:
         card = random.choice(list(card_choices.keys()))
         dealer_card = card_choices[card]
+        time.sleep(2)
         print("Dealer's card is " + card + " (" + str(dealer_card) + ").")
         if isinstance(dealer_card, list):
             if dealer_total + 11 <= 21:
@@ -70,15 +71,15 @@ def black_jack():
                 dealer_total += 1
         else:
             dealer_total += dealer_card
-        time.sleep(1)
+        time.sleep(2)
         print("Dealer's total: " + str(dealer_total))
-        time.sleep(1)
+        time.sleep(2)
     print("Your total: " + str(player_total))
     print("Dealer's total: " + str(dealer_total))
 
 
     if dealer_total > 21 or player_total > dealer_total:
-        print("You win!!!!!!")
+        print("You win this round!!!")
     elif player_total == dealer_total:
         print("It's a tie :0")
     else:
@@ -86,6 +87,14 @@ def black_jack():
 
 
 def main():
-    black_jack()
+    while True:
+        black_jack()
+        play_again = input("Do you want to play one more round? (yes/no) ")
+        play_again = play_again.lower()
+        if play_again != "yes":
+            print("Thanks for playing!")
+            break
+
+
 if __name__ == "__main__":
     main()
