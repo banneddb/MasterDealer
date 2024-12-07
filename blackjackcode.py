@@ -7,27 +7,27 @@ card_choices = {"Ace" : [1,11],"Two" : 2,"Three": 3, "Four": 4,"Five" : 5,"Six" 
 def black_jack(player_choice: str = None):
     player_total = 0
     dealer_total = 0
+    turn = 0
     messages = []
 
     time.sleep(0.2)
     messages.append("Dealer hands you the first card...")
-
     time.sleep(2)
     card = random.choice(list(card_choices.keys()))
     player_card = card_choices[card]
-    messages.append("Your first card is " + card + " (" + str(player_card) + ").")
+    messages.append(f"Your first card is {card}{str(player_card)}.")
 
     time.sleep(2)
     if isinstance(player_card, list):
             if player_choice and player_choice in ["1","11"]:
                 player_total += int(player_choice)
             else:
-                messages.append("You have an Ace. Do you want it as 1 or 11? (Please reply with '1' or '11) ")
+                messages.append("You've got an Ace! Is it going to be a 1 or 11... (Please reply with '1' or '11') ")
                 return messages
 
     else:
         player_total += player_card
-    messages.append("Your total is " + str(player_total) + ".")
+    messages.append(f"Your total is {str(player_total)}.")
 
     while player_total < 21:
         if not player_choice:
@@ -37,7 +37,7 @@ def black_jack(player_choice: str = None):
             card = random.choice(list(card_choices.keys()))
             player_card = card_choices[card]
             time.sleep(2)
-            messages.append("You drew " + card + " (" + str(player_card) + ").")
+            messages.append(f"Your first card is {card}{str(player_card)}.")
 
             if isinstance(player_card, list):
                 if player_total + 11 <= 21:
@@ -71,7 +71,7 @@ def black_jack(player_choice: str = None):
         else:
             dealer_total += dealer_card
         time.sleep(2)
-        messages.append("Dealer's total: " + str(dealer_total))
+        messages.append(f"Dealer's total: {str(dealer_total)}")
         time.sleep(2)
 
     messages.append("Your total: " + str(player_total))
