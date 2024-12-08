@@ -15,7 +15,7 @@ def black_jack(player_choice: str = None):
     time.sleep(2)
     card = random.choice(list(card_choices.keys()))
     player_card = card_choices[card]
-    messages.append(f"Your first card is {card}{str(player_card)}.")
+    messages.append(f"Your first card is {card} ({str(player_card)}).")
 
     time.sleep(2)
     if isinstance(player_card, list):
@@ -37,7 +37,7 @@ def black_jack(player_choice: str = None):
             card = random.choice(list(card_choices.keys()))
             player_card = card_choices[card]
             time.sleep(2)
-            messages.append(f"Your first card is {card}{str(player_card)}.")
+            messages.append(f"Your first card is {card}({str(player_card)}).")
 
             if isinstance(player_card, list):
                 if player_total + 11 <= 21:
