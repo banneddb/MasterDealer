@@ -4,7 +4,7 @@ import random
 card_choices = {"Ace" : [1,11],"Two" : 2,"Three": 3, "Four": 4,"Five" : 5,"Six" : 6,"Seven" : 7,"Eight" : 8,"Nine" : 9,"Jack" : 10,"Queen" : 10,"Kings" : 10 }
 #aces = 1 or 11 (player can pick)
 
-def black_jack(player_choice=None, start_new=False, state=None):
+def black_jack(player_choice: str = None, start_new: bool = False, state: dict = None):
 
     messages = []
 
@@ -28,6 +28,14 @@ def black_jack(player_choice=None, start_new=False, state=None):
         dealer_card_value = card_choices[dealer_card]
         state['dealer_cards'] = [dealer_card]
         state['dealer_total'] = dealer_card_value
+
+        if isinstance(dealer_card_value, list):
+            if 11 <= 21:
+                state['dealer_total'] = 11
+            else:
+                state['dealer_total'] = 1
+        else:
+            state['dealer_total'] = dealer_card_value
         messages.append("The dealer's first card is " + dealer_card + " (" + str(dealer_card_value) + ").")
         messages.append("The dealer's total is " + str(state['dealer_total']) + ".")
 
@@ -37,7 +45,7 @@ def black_jack(player_choice=None, start_new=False, state=None):
         state['player_total'] += ace_value
         messages.append("Your total is " + str(state['player_total']) + ".")
 
-    elif "hit" in player_choice:
+    elif player_choice == "hit":
         card = random.choice(list(card_choices.keys()))
         player_card = card_choices[card]
         state['player_cards'].append(card)
@@ -51,11 +59,11 @@ def black_jack(player_choice=None, start_new=False, state=None):
             state['player_total'] += player_card
 
             messages.append("Your new card is " + card + " (" + str(player_card) + ").")
-            messages.append("Your total is now " + str(player_total) + ".")
+            messages.append("Your total is now " + str(state['player_total']) + ".")
             if state['player_total'] > 21:
                 messages.append("You went over 21! Game over. Dealer wins.")
                 return messages
-    elif "stay" in player_choice:
+    elif player_choice == "stay":
         messages.append("You chose to stay. Your total is " + str(state['player_total']) + ".")
 
         while state['dealer_total'] < 17:

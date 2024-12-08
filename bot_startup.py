@@ -45,21 +45,23 @@ async def on_message(message: Message) -> None:
 
     print(f'[{channel_id}] {username}: "{user_message}"')
     if channel_id not in game_states:
-        game_states[channel_id] = {'in_progress': False, 'player_choice': None}
+        game_states[channel_id] = {'in_progress': False, 'player_choice': None, 'player_total':0, 'player_cards': []}
     if user_message.startswith("play blackjack"):
         if game_states[channel_id]['in_progress']:
             await message.channel.send("A game is already in progress.")
         else:
             game_states[channel_id]['in_progress'] = True
             game_states[channel_id]['player_choice'] = None
-            game_response = black_jack()
+            game_states[channel_id]['player_total'] = 0
+            game_states[channel_id]['player_cards'] = []
+            game_response = black_jack(start_new=True, state=game_states[channel_id])
             await message.channel.send("\n".join(game_response))
     elif user_message in ["1","11","hit","stay"]:
         if not game_states[channel_id]['in_progress']:
             await message.channel.send("No game in progress. Send 'play blackjack' to start the game!")
         else:
             game_states[channel_id]['player_choice'] = user_message
-            game_response = black_jack(player_choice=user_message)
+            game_response = black_jack(player_choice=user_message, state=game_states[channel_id])
             await message.channel.send("\n".join(game_response))
             if any("Game over" in msg for msg in game_response) or "You win" in game_response:
                 game_states[channel_id]['in_progress'] = False
