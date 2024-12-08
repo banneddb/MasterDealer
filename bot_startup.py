@@ -18,18 +18,13 @@ async def send_message(message: Message, user_message:str) -> None:
     if not user_message:
         print("(Message was empty because intents were not enabled)")
         return
-    user_message = user_message.strip().lower()
-
-    if user_message == 'play blackjack':
-        try:
-            response = black_jack()
-            for msg in response:
-                await message.channel.send(msg)
-        #await message.author.send(response) if user_message[0] == '?' else await message.channel.send(response)
-        except Exception as e:
-            print(f"Error in blackjack game: {e}")
-    else:
-        await message.channel.send("Send 'play blackjack' to start the game!")
+    if user_message[0] == '?':
+        user_message = user_message[1:]
+    try:
+        response: str = black_jack(user_message)
+        await message.author.send(response) if user_message[0] == '?' else await message.channel.send(response)
+    except Exception as e:
+        print(e)
 
 # Start-up for the Bot
 @client.event
