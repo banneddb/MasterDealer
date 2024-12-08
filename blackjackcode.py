@@ -43,49 +43,44 @@ def black_jack(player_choice=None, start_new=False, state=None):
         state['player_cards'].append(card)
 
         if isinstance(player_card, list):
-            if dealer_total + 11 <= 21:
-                dealer_total += 11
+            if state['player_total'] + 11 <= 21:
+                state['player_total'] += 11
             else:
-                dealer_total += 1
+                state['player_total'] += 1
         else:
-            dealer_total += dealer_card
+            state['player_total'] += player_card
 
+            messages.append("Your new card is " + card + " (" + str(player_card) + ").")
             messages.append("Your total is now " + str(player_total) + ".")
-            if player_total > 21:
+            if state['player_total'] > 21:
                 messages.append("You went over 21! Game over. Dealer wins.")
                 return messages
-        elif "stay" in player_choice:
-            break
+    elif "stay" in player_choice:
+        messages.append("You chose to stay. Your total is " + str(state['player_total']) + ".")
+
+        while state['dealer_total'] < 17:
+            dealer_card = random.choice(list(card_choices.keys()))
+            dealer_card_value = card_choices[dealer_card]
+            state['dealer_cards'].append(dealer_card)
+            state['dealer_total'] += dealer_card_value
+            messages.append("Dealer draws a " + dealer_card + " (" + str(dealer_card) + ").")
+            messages.append(f"Dealer's total: {str(state['dealer_total'])}")
+
+
+
+
+
+        if state['dealer_total'] > 21:
+            messages.append("The dealer busts! You win!")
+        elif state['dealer_total'] > state['player_total']:
+            messages.append("The dealer wins!")
+        elif state['dealer_total'] < state['player_total']:
+            messages.append("You win!")
         else:
-            messages.append("Invalid input. Please type 'hit' or 'stay'.")
-            return messages
-    messages.append("Dealer's turn begins.")
-
-    while dealer_total < 17:
-        card = random.choice(list(card_choices.keys()))
-        dealer_card = card_choices[card]
-
-        messages.append("Dealer's card is " + card + " (" + str(dealer_card) + ").")
-        if isinstance(dealer_card, list):
-            if dealer_total + 11 <= 21:
-                dealer_total += 11
-            else:
-                dealer_total += 1
-        else:
-            dealer_total += dealer_card
-
-        messages.append(f"Dealer's total: {str(dealer_total)}")
-
-
-    messages.append("Your total: " + str(player_total))
-    messages.append("Dealer's total: " + str(dealer_total))
-
-
-    if dealer_total > 21 or player_total > dealer_total:
-        messages.append("You win this round!!!")
-    elif player_total == dealer_total:
-        messages.append("It's a tie.")
+            messages.append("It's a tie")
     else:
-        messages.append("Game Over. Dealer wins...")
+        messages.append("Invalid input. Please type 'hit' or 'stay'.")
+        return messages
+
 
     return messages
