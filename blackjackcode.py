@@ -21,28 +21,34 @@ def black_jack(player_choice=None, start_new=False, state=None):
         if isinstance(player_card, list):
             messages.append("You've got an Ace! Is it going to be a 1 or 11... (Please reply with '1' or '11') ")
             return messages
-
-
-
         messages.append(f"Your total is {str(state['player_total'])}.")
 
+        #Time to deal the card to the dealer
+        dealer_card = random.choice(list(card_choices.keys()))
+        dealer_card_value = card_choices[dealer_card]
+        state['dealer_cards'] = [dealer_card]
+        state['dealer_total'] = dealer_card_value
+        messages.append("The dealer's first card is " + dealer_card + " (" + str(dealer_card_value) + ").")
+        messages.append("The dealer's total is " + str(state['dealer_total']) + ".")
 
-    while player_total < 21:
-        if not player_choice:
-            messages.append("Would you like to hit or stay? (Reply 'hit' or 'stay')")
-            return messages
-        elif "hit" in player_choice:
-            card = random.choice(list(card_choices.keys()))
-            player_card = card_choices[card]
+    #Taking care of the Ace
+    elif player_choice == "1" or player_choice == "11":
+        ace_value = int(player_choice)
+        state['player_total'] += ace_value
+        messages.append("Your total is " + str(state['player_total']) + ".")
 
-            messages.append(f"You drew{card}({str(player_card)}).")
+    elif "hit" in player_choice:
+        card = random.choice(list(card_choices.keys()))
+        player_card = card_choices[card]
+        state['player_cards'].append(card)
 
-            if isinstance(player_card, list):
-                if player_choice and player_choice in ["1", "11"]:
-                    player_total += int(player_choice)
-                else:
-                    messages.append("You've got an Ace! Is it going to be a 1 or 11... (Please reply with '1' or '11') ")
-                    return messages
+        if isinstance(player_card, list):
+            if dealer_total + 11 <= 21:
+                dealer_total += 11
+            else:
+                dealer_total += 1
+        else:
+            dealer_total += dealer_card
 
             messages.append("Your total is now " + str(player_total) + ".")
             if player_total > 21:
