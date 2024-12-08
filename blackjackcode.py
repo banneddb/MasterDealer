@@ -4,32 +4,28 @@ import random
 card_choices = {"Ace" : [1,11],"Two" : 2,"Three": 3, "Four": 4,"Five" : 5,"Six" : 6,"Seven" : 7,"Eight" : 8,"Nine" : 9,"Jack" : 10,"Queen" : 10,"Kings" : 10 }
 #aces = 1 or 11 (player can pick)
 
-def black_jack(player_choice: str = None):
-    player_total = 0
-    dealer_total = 0
+def black_jack(player_choice=None, start_new=False, state=None):
+
     messages = []
 
+    if start_new:
+        messages.append("Dealer hands you the first card...")
 
-    messages.append("Dealer hands you the first card...")
-    print(messages)
-    card = random.choice(list(card_choices.keys()))
-    player_card = card_choices[card]
-    messages.append(f"Your first card is {card} ({str(player_card)}).")
-    print(messages)
-
-    if isinstance(player_card, list):
-            if player_choice and player_choice in ["1","11"]:
-                player_total += int(player_choice)
-            else:
-                messages.append("You've got an Ace! Is it going to be a 1 or 11... (Please reply with '1' or '11') ")
-                print(messages)
-                return messages
+        card = random.choice(list(card_choices.keys()))
+        player_card = card_choices[card]
+        state['player_cards'].append(card)
+        state['player_total'] += player_card
+        messages.append(f"Your first card is {card} ({str(player_card)}).")
 
 
-    else:
-        player_total += player_card
-    messages.append(f"Your total is {str(player_total)}.")
-    print(messages)
+        if isinstance(player_card, list):
+            messages.append("You've got an Ace! Is it going to be a 1 or 11... (Please reply with '1' or '11') ")
+            return messages
+
+
+
+        messages.append(f"Your total is {str(state['player_total'])}.")
+
 
     while player_total < 21:
         if not player_choice:
@@ -87,5 +83,3 @@ def black_jack(player_choice: str = None):
         messages.append("Game Over. Dealer wins...")
 
     return messages
-
-black_jack()

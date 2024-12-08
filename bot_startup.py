@@ -46,7 +46,6 @@ async def on_message(message: Message) -> None:
     print(f'[{channel_id}] {username}: "{user_message}"')
     if channel_id not in game_states:
         game_states[channel_id] = {'in_progress': False, 'player_choice': None}
-
     if user_message.startswith("play blackjack"):
         if game_states[channel_id]['in_progress']:
             await message.channel.send("A game is already in progress.")
