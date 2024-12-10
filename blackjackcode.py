@@ -5,7 +5,7 @@ card_choices = {"Ace" : [1,11],"Two" : 2,"Three": 3, "Four": 4,"Five" : 5,"Six" 
 classes= ["♣️", "♦️", "♠️", "♥️"]
 #aces = 1 or 11 (player can pick)
 
-def black_jack(player_choice: str = None, start_new: bool = False, state: dict = None, classes = None):
+def black_jack(player_choice: str = None, start_new: bool = False, state: dict = None):
 
     messages = []
 
