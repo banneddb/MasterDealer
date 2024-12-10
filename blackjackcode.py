@@ -54,7 +54,7 @@ def black_jack(player_choice: str = None, start_new: bool = False, state: dict =
         messages.append(f"Your total is {str(state['player_total'])}.")
         messages.append("Turn is over. Are you hitting or staying? (reply with 'hit' or 'stay')")
 
-    elif player_choice == "hit":
+    elif "hit" in player_choice:
         card = random.choice(list(card_choices.keys()))
         cardClass = random.choice(classes)
         player_card = card_choices[card]
@@ -67,13 +67,13 @@ def black_jack(player_choice: str = None, start_new: bool = False, state: dict =
                 state['player_total'] += 1
         else:
             state['player_total'] += player_card
-
             messages.append(f"Your new card is {card} {cardClass} {str(player_card)}.")
             messages.append(f"Your total is now {str(state['player_total'])}.")
             if state['player_total'] > 21:
                 messages.append("You went over 21! Game over. Dealer wins.")
                 return messages
-    elif player_choice == "stay":
+        messages.append("Turn is over. Are you hitting or staying? (reply with 'hit' or 'stay')")
+    elif "stay" in player_choice:
         messages.append(f"You chose to stay. Your total is {str(state['player_total'])}.")
         while state['dealer_total'] < 17:
             dealer_card = random.choice(list(card_choices.keys()))
