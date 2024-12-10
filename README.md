@@ -9,3 +9,5 @@ Add to your server: https://discord.com/oauth2/authorize?client_id=1308509219556
 
 # Credits
 https://www.youtube.com/watch?v=UYJDKSah-Ww
+https://youtu.be/o2wtNOsag7E?si=g3b7clu25qRve5j1
+https://youtu.be/BPvg9bndP1U?si=AK-jfUAUSD2i372W
