@@ -8,6 +8,6 @@ Here is the link for a full rundown:
 Add to your server: https://discord.com/oauth2/authorize?client_id=1308509219556687872&permissions=67584&integration_type=0&scope=bot
 
 # Credits
-https://www.youtube.com/watch?v=UYJDKSah-Ww
-https://youtu.be/o2wtNOsag7E?si=g3b7clu25qRve5j1
-https://youtu.be/BPvg9bndP1U?si=AK-jfUAUSD2i372W
+- https://www.youtube.com/watch?v=UYJDKSah-Ww
+- https://youtu.be/o2wtNOsag7E?si=g3b7clu25qRve5j1
+- https://youtu.be/BPvg9bndP1U?si=AK-jfUAUSD2i372W
