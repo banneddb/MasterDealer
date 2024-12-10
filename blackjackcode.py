@@ -89,6 +89,10 @@ def black_jack(player_choice: str = None, start_new: bool = False, state: dict =
             messages.append("The dealer busts! You win!")
             state = {}
             return messages
+        elif state['player_total'] > 21:
+            messages.append("You went over 21 and busted! Maybe next time.....")
+            state = {}
+            return messages
         elif state['dealer_total'] > state['player_total']:
             messages.append("The dealer wins!")
             state = {}
