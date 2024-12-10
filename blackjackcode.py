@@ -87,15 +87,19 @@ def black_jack(player_choice: str = None, start_new: bool = False, state: dict =
 
         if state['dealer_total'] > 21:
             messages.append("The dealer busts! You win!")
+            state = {}
             return messages
         elif state['dealer_total'] > state['player_total']:
             messages.append("The dealer wins!")
+            state = {}
             return messages
         elif state['dealer_total'] < state['player_total']:
             messages.append("You win!")
+            state = {}
             return messages
         else:
             messages.append("It's a tie")
+            state = {}
             return messages
     else:
         messages.append("Invalid input. Please type 'hit' or 'stay'.")
