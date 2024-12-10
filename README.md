@@ -1,5 +1,5 @@
 # ♣️♦️♠️♥️BLACKJACK DISCORD BOT♣️♦️♠️♥️
-
+by Behruz Omonullaev and Misael Manzanillo (12/09/2024)
 ## Overview
 Ever wanted to practice with blackjack but didn't know where to start? This project aimed to entertain Discord users by having them play against a dealer through any channel in the comfort of their own server.
 - Here is the link for a full rundown:
